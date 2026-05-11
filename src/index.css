@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+/* ===== Custom Theme ===== */
+@theme {
+  --color-soglia-primary: #8B5E3C;
+  --color-soglia-primary-light: #A47650;
+  --color-soglia-primary-dark: #6B4529;
+  --color-soglia-cream: #F5F0EB;
+  --color-soglia-cream-dark: #E8DED4;
+  --color-soglia-dark: #2C1810;
+  --color-soglia-dark-light: #3D2518;
+  --color-soglia-text: #3A3A3A;
+  --color-soglia-text-light: #6B6B6B;
+  --color-soglia-accent: #C9A96E;
+  --color-soglia-accent-light: #D4BA85;
+  --color-soglia-white: #FDFBF9;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+}
+
+/* ===== Base Styles ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-soglia-text);
+  background-color: var(--color-soglia-white);
+  overflow-x: hidden;
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-soglia-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-soglia-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-soglia-primary-dark);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background-color: var(--color-soglia-accent);
+  color: white;
+}
+
+/* ===== Section Divider ===== */
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, var(--color-soglia-primary), var(--color-soglia-accent));
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+/* ===== Glass Effect ===== */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ===== Text Gradient ===== */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-soglia-primary) 0%, var(--color-soglia-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Animations ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
