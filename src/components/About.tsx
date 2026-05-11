@@ -35,21 +35,21 @@ function AnimatedCard({ value, index }: { value: typeof values[0]; index: number
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.2 }}
-      className="group relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl hover:shadow-soglia-primary/8 transition-all duration-500 border border-soglia-cream-dark/50 hover:border-soglia-primary/20 hover:-translate-y-1"
+      className="group relative bg-white dark:bg-dk-card rounded-2xl p-8 shadow-sm hover:shadow-xl hover:shadow-soglia-primary/8 dark:hover:shadow-black/30 transition-all duration-500 border border-soglia-cream-dark/50 dark:border-white/7 hover:border-soglia-primary/20 dark:hover:border-soglia-accent/20 hover:-translate-y-1"
     >
       {/* Decorative gradient on hover */}
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-soglia-primary/3 to-soglia-accent/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className="relative z-10">
-        <div className="w-14 h-14 rounded-xl bg-soglia-cream flex items-center justify-center mb-6 group-hover:bg-soglia-primary/10 transition-colors duration-500">
-          <Icon size={26} className="text-soglia-primary" strokeWidth={1.5} />
+        <div className="w-14 h-14 rounded-xl bg-soglia-cream dark:bg-dk-card-alt flex items-center justify-center mb-6 group-hover:bg-soglia-primary/10 dark:group-hover:bg-soglia-primary/15 transition-colors duration-500">
+          <Icon size={26} className="text-soglia-primary dark:text-soglia-accent" strokeWidth={1.5} />
         </div>
 
-        <h3 className="text-xl font-semibold text-soglia-dark mb-3 tracking-wide">
+        <h3 className="text-xl font-semibold text-soglia-dark dark:text-soglia-cream mb-3 tracking-wide">
           {value.title}
         </h3>
 
-        <p className="text-soglia-text-light leading-relaxed text-sm">
+        <p className="text-soglia-text-light dark:text-soglia-cream/55 leading-relaxed text-sm">
           {value.description}
         </p>
       </div>
@@ -62,7 +62,7 @@ export default function About() {
   const titleInView = useInView(titleRef, { once: true, margin: '-100px' });
 
   return (
-    <section id="nosotros" className="py-24 md:py-32 bg-soglia-white">
+    <section id="nosotros" className="py-24 md:py-32 bg-soglia-white dark:bg-dk-bg">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div ref={titleRef} className="text-center max-w-2xl mx-auto mb-16">
@@ -79,7 +79,7 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={titleInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl text-soglia-dark mb-6 tracking-wide"
+            className="text-4xl md:text-5xl text-soglia-dark dark:text-soglia-cream mb-6 tracking-wide"
             style={{ fontFamily: 'var(--font-serif)' }}
           >
             Más que un café
@@ -97,7 +97,7 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             animate={titleInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-soglia-text-light leading-relaxed text-lg"
+            className="text-soglia-text-light dark:text-soglia-cream/60 leading-relaxed text-lg"
           >
             En Soglia creemos que el café es un arte. Desde el grano hasta la taza,
             cada detalle está pensado para ofrecerte un momento de disfrute único en un

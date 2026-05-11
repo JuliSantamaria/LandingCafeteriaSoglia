@@ -26,7 +26,7 @@ export default function Location() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="contacto" className="py-24 md:py-32 bg-soglia-cream/40">
+    <section id="contacto" className="py-24 md:py-32 bg-soglia-cream/40 dark:bg-dk-surface">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div ref={ref} className="text-center max-w-2xl mx-auto mb-16">
@@ -43,7 +43,7 @@ export default function Location() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl text-soglia-dark mb-6 tracking-wide"
+            className="text-4xl md:text-5xl text-soglia-dark dark:text-soglia-cream mb-6 tracking-wide"
             style={{ fontFamily: 'var(--font-serif)' }}
           >
             Dónde encontrarnos
@@ -87,8 +87,8 @@ export default function Location() {
             className="flex flex-col gap-8"
           >
             {/* Contact Info */}
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-soglia-cream-dark/50">
-              <h3 className="text-lg font-semibold text-soglia-dark tracking-wider uppercase mb-6">
+            <div className="bg-white dark:bg-dk-card rounded-2xl p-8 shadow-sm border border-soglia-cream-dark/50 dark:border-white/7">
+              <h3 className="text-lg font-semibold text-soglia-dark dark:text-soglia-cream tracking-wider uppercase mb-6">
                 Contacto
               </h3>
               <div className="space-y-4">
@@ -100,10 +100,10 @@ export default function Location() {
                       href={item.href}
                       className="flex items-center gap-4 group"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-soglia-cream flex items-center justify-center group-hover:bg-soglia-primary/10 transition-colors duration-300">
+                      <div className="w-10 h-10 rounded-lg bg-soglia-cream dark:bg-dk-card-alt flex items-center justify-center group-hover:bg-soglia-primary/10 transition-colors duration-300">
                         <Icon size={18} className="text-soglia-primary" strokeWidth={1.5} />
                       </div>
-                      <span className="text-soglia-text group-hover:text-soglia-primary transition-colors duration-300">
+                      <span className="text-soglia-text dark:text-soglia-cream/70 group-hover:text-soglia-primary dark:group-hover:text-soglia-accent transition-colors duration-300">
                         {item.label}
                       </span>
                     </a>
@@ -113,20 +113,20 @@ export default function Location() {
             </div>
 
             {/* Hours */}
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-soglia-cream-dark/50">
+            <div className="bg-white dark:bg-dk-card rounded-2xl p-8 shadow-sm border border-soglia-cream-dark/50 dark:border-white/7">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-lg bg-soglia-cream flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-soglia-cream dark:bg-dk-card-alt flex items-center justify-center">
                   <Clock size={18} className="text-soglia-primary" strokeWidth={1.5} />
                 </div>
-                <h3 className="text-lg font-semibold text-soglia-dark tracking-wider uppercase">
+                <h3 className="text-lg font-semibold text-soglia-dark dark:text-soglia-cream tracking-wider uppercase">
                   Horarios
                 </h3>
               </div>
               <div className="space-y-3">
                 {hours.map((h) => (
-                  <div key={h.days} className="flex items-center justify-between pb-3 border-b border-soglia-cream last:border-0 last:pb-0">
-                    <span className="text-soglia-text font-medium">{h.days}</span>
-                    <span className="text-soglia-primary font-semibold">{h.time}</span>
+                  <div key={h.days} className="flex items-center justify-between pb-3 border-b border-soglia-cream dark:border-white/7 last:border-0 last:pb-0">
+                    <span className="text-soglia-text dark:text-soglia-cream/70 font-medium">{h.days}</span>
+                    <span className="text-soglia-primary dark:text-soglia-accent font-semibold">{h.time}</span>
                   </div>
                 ))}
               </div>
@@ -140,10 +140,10 @@ export default function Location() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className="flex-1 flex items-center justify-center gap-3 bg-white rounded-xl p-4 shadow-sm border border-soglia-cream-dark/50 hover:border-soglia-primary/20 hover:shadow-md transition-all duration-300 group"
+                    className="flex-1 flex items-center justify-center gap-3 bg-white dark:bg-dk-card rounded-xl p-4 shadow-sm border border-soglia-cream-dark/50 dark:border-white/7 hover:border-soglia-primary/20 dark:hover:border-soglia-accent/20 hover:shadow-md transition-all duration-300 group"
                   >
                     <Icon size={20} className="text-soglia-primary" strokeWidth={1.5} />
-                    <span className="text-soglia-text text-sm font-medium group-hover:text-soglia-primary transition-colors duration-300">
+                    <span className="text-soglia-text dark:text-soglia-cream/70 text-sm font-medium group-hover:text-soglia-primary dark:group-hover:text-soglia-accent transition-colors duration-300">
                       {link.label}
                     </span>
                   </a>

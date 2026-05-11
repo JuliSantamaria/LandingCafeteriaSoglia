@@ -22,7 +22,7 @@ export default function Gallery() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="galeria" className="py-24 md:py-32 bg-soglia-white">
+    <section id="galeria" className="py-24 md:py-32 bg-soglia-white dark:bg-dk-bg">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div ref={ref} className="text-center max-w-2xl mx-auto mb-16">
@@ -39,7 +39,7 @@ export default function Gallery() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl text-soglia-dark mb-6 tracking-wide"
+            className="text-4xl md:text-5xl text-soglia-dark dark:text-soglia-cream mb-6 tracking-wide"
             style={{ fontFamily: 'var(--font-serif)' }}
           >
             Un vistazo a Soglia

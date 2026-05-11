@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 
 const navLinks = [
   { label: 'Inicio', href: '#inicio' },
@@ -10,7 +10,12 @@ const navLinks = [
   { label: 'Contacto', href: '#contacto' },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  isDark: boolean;
+  onToggleTheme: () => void;
+}
+
+export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -45,7 +50,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-soglia-white/95 backdrop-blur-md shadow-lg shadow-soglia-dark/5'
+          ? 'bg-soglia-white/95 dark:bg-dk-bg/95 backdrop-blur-md shadow-lg shadow-soglia-dark/5 dark:shadow-black/20'
           : 'bg-transparent'
       }`}
     >
@@ -76,7 +81,7 @@ export default function Navbar() {
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`relative text-sm tracking-wider uppercase transition-colors duration-300 group ${
                   scrolled
-                    ? 'text-soglia-text hover:text-soglia-primary'
+                    ? 'text-soglia-text dark:text-soglia-cream/70 hover:text-soglia-primary dark:hover:text-soglia-accent'
                     : 'text-white/80 hover:text-white'
                 }`}
               >
@@ -84,12 +89,36 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-soglia-accent transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
+
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={onToggleTheme}
+              aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
+              className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${
+                scrolled
+                  ? 'text-soglia-text-light dark:text-soglia-cream/50 hover:text-soglia-primary dark:hover:text-soglia-accent hover:bg-soglia-cream dark:hover:bg-white/5'
+                  : 'text-white/60 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isDark ? 'sun' : 'moon'}
+                  initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                </motion.div>
+              </AnimatePresence>
+            </button>
+
             <a
               href="#contacto"
               onClick={(e) => handleNavClick(e, '#contacto')}
               className={`px-5 py-2.5 rounded-full text-sm tracking-wider uppercase transition-all duration-300 border ${
                 scrolled
-                  ? 'border-soglia-primary text-soglia-primary hover:bg-soglia-primary hover:text-white'
+                  ? 'border-soglia-primary text-soglia-primary hover:bg-soglia-primary hover:text-white dark:border-soglia-accent dark:text-soglia-accent dark:hover:bg-soglia-accent dark:hover:text-white'
                   : 'border-white/40 text-white hover:bg-white/10'
               }`}
             >
@@ -97,16 +126,38 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className={`md:hidden relative z-10 p-2 transition-colors duration-300 ${
-              mobileOpen ? 'text-white' : scrolled ? 'text-soglia-primary' : 'text-white'
-            }`}
-            aria-label="Menú de navegación"
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile: theme toggle + hamburger */}
+          <div className="md:hidden flex items-center gap-2 relative z-10">
+            <button
+              onClick={onToggleTheme}
+              aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
+              className={`p-2 rounded-full transition-all duration-300 ${
+                mobileOpen ? 'text-white' : scrolled ? 'text-soglia-text-light dark:text-soglia-cream/50' : 'text-white/60'
+              }`}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isDark ? 'sun-m' : 'moon-m'}
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                </motion.div>
+              </AnimatePresence>
+            </button>
+
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className={`p-2 transition-colors duration-300 ${
+                mobileOpen ? 'text-white' : scrolled ? 'text-soglia-primary' : 'text-white'
+              }`}
+              aria-label="Menú de navegación"
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -118,7 +169,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-soglia-dark/95 backdrop-blur-lg md:hidden z-0"
+            className="fixed inset-0 bg-soglia-dark/95 dark:bg-dk-bg/98 backdrop-blur-lg md:hidden z-0"
           >
             <div className="flex flex-col items-center justify-center h-full gap-8">
               {navLinks.map((link, i) => (

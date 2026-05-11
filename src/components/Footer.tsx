@@ -1,4 +1,5 @@
-import { Coffee, Camera, MessageCircle, ArrowUp } from 'lucide-react';
+import { Coffee, ArrowUp } from 'lucide-react';
+import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 const footerLinks = [
   { label: 'Inicio', href: '#inicio' },
@@ -70,13 +71,13 @@ export default function Footer() {
                 href="#"
                 className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-soglia-primary/20 transition-colors duration-300 border border-white/10 hover:border-soglia-primary/30"
               >
-                <Camera size={18} className="text-white/60 hover:text-white" />
+                <FaInstagram size={18} className="text-white/60 hover:text-white" />
               </a>
               <a
                 href="#"
                 className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-soglia-primary/20 transition-colors duration-300 border border-white/10 hover:border-soglia-primary/30"
               >
-                <MessageCircle size={18} className="text-white/60 hover:text-white" />
+                <FaWhatsapp size={18} className="text-white/60 hover:text-white" />
               </a>
             </div>
           </div>
